@@ -22,9 +22,6 @@ class AccountAnalyticAccount(models.Model):
         sale_line = self.env['sale.order.line'].new({
             'order_id': order_id,
             'product_id': line.product_id.id,
-            'product_qty': line.quantity,
-            'product_uom_qty': line.quantity,
-            'product_uom': line.uom_id.id,
         })
         # Get other sale line values from product onchange
         sale_line.product_id_change()
@@ -40,6 +37,9 @@ class AccountAnalyticAccount(models.Model):
             'name': name,
             'discount': line.discount,
             'price_unit': line.price_unit,
+            'product_qty': line.quantity,
+            'product_uom_qty': line.quantity,
+            'product_uom': line.uom_id.id,
         })
         return sale_line_vals
 
